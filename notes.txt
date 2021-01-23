@@ -1,0 +1,22 @@
+https://docs.wpilib.org/en/stable/
+
+Intro
+ - YouTube
+ - https://codingbat.com/java
+
+Installing Software
+ - Installing the FRC Game Tools
+ - Uninstall Old Versions
+ - Download the FRC Game Tools from NI.
+	https://www.ni.com/en-us/support/downloads/drivers/download.frc-game-tools.html#369633
+ - Get NI license / serial number from FIRST website --> dashboard --> Payment & Product --> Passwords/Voucher Codes --> NI
+ - WPILib Installation Guide
+ - Follow the github link, and select your OS from "Assets" at the bottom
+ - Follow instructions and open VS Code from either desktop shortcut or Windows search.
+
+Git Setup
+ - Download and install Github Desktop and login via File --> Options.
+ - Clone the repository via File --> clone repository.
+ - Open VS Code --> File --> Open Folder --> Documents --> GitHub --> [your repo here]
+ - further reading: https://docs.wpilib.org/en/stable/docs/zero-to-robot/step-2/step-2-next-steps.html
+ - https://docs.wpilib.org/en/stable/docs/software/vscode-overview/3rd-party-libraries.html#rd-party-libraries
