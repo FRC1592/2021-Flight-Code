@@ -20,3 +20,8 @@ Git Setup
  - Open VS Code --> File --> Open Folder --> Documents --> GitHub --> [your repo here]
  - further reading: https://docs.wpilib.org/en/stable/docs/zero-to-robot/step-2/step-2-next-steps.html
  - https://docs.wpilib.org/en/stable/docs/software/vscode-overview/3rd-party-libraries.html#rd-party-libraries
+step 3
+
+
+
+yoez
