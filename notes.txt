@@ -22,7 +22,12 @@ Git Setup
  - https://docs.wpilib.org/en/stable/docs/software/vscode-overview/3rd-party-libraries.html#rd-party-libraries
 
 Step 3
- - 
+ - Imaging your RoboRIO (not done yet)
+ - Programming the radio...
+ - https://docs.wpilib.org/en/stable/docs/zero-to-robot/step-3/radio-programming.html
+ - Radio model OM... means "open mesh"
+ - Firmware apparently does not need updating
+ 
 
 Step 4
  - 
