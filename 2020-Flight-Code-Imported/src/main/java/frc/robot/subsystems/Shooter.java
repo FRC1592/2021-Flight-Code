@@ -17,12 +17,10 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.lib1592.drivers.TalonFactory;
 import frc.robot.lib1592.drivers.TalonSRX;
-// import frc.robot.lib1592.drivers.TalonSRX.Slot;
 
 public class Shooter extends SubsystemBase {
   private final TalonSRX m_gather = TalonFactory.create(Constants.ID_GATHER);
   private final TalonSRX m_kicker = TalonFactory.create(Constants.ID_KICKER);
-  // private final TalonSRX m_shooter = TalonFactory.create(Constants.ID_SHOOTER);
   private final TalonFX m_shooter = new TalonFX(Constants.ID_SHOOTER);
   private final DigitalInput m_loaded = new DigitalInput(Constants.DIO_LOADED);
 
@@ -73,7 +71,6 @@ public class Shooter extends SubsystemBase {
   }
 
   public void stopShooter() {
-    // m_shooter.stopMotor();
     m_shooter.set(ControlMode.PercentOutput, 0.0);
   }
 
