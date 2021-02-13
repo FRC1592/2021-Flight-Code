@@ -53,8 +53,8 @@ public final class Constants {
     public static final int ID_SHOOTER = 3;     // SHTR 3
     public static final int DIO_LOADED = 0;
 
-    public static final boolean INVERT_GATHER = false;
-    public static final boolean INVERT_KICKER = false;
+    public static final boolean INVERT_GATHER = true;
+    public static final boolean INVERT_KICKER = true;
     public static final boolean INVERT_SHOOTER = false;
     public static final boolean INVERT_SHOOTER_SENSOR = false;
     public static final boolean INVERT_LOADED = false;

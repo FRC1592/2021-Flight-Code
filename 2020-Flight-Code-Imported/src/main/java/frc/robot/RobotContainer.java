@@ -84,20 +84,20 @@ public class RobotContainer {
         .whenReleased(new InstantCommand(m_shooter::stopGather, m_shooter));
 
     // Manipulator
-    new JoystickButton(m_joyManipulator, ButtonName.A.value)
-        .whileActiveOnce(
-          new StartEndCommand(m_tomwheel::lower, m_tomwheel::stopLift, m_tomwheel).withTimeout(1).andThen(
-          new StartEndCommand(m_tomwheel::lower, m_tomwheel::stopLift, m_tomwheel).withInterrupt(m_tomwheel::limitHit)));
+    // new JoystickButton(m_joyManipulator, ButtonName.A.value)
+    //     .whileActiveOnce(
+    //       new StartEndCommand(m_tomwheel::lower, m_tomwheel::stopLift, m_tomwheel).withTimeout(1).andThen(
+    //       new StartEndCommand(m_tomwheel::lower, m_tomwheel::stopLift, m_tomwheel).withInterrupt(m_tomwheel::limitHit)));
 
-    new JoystickButton(m_joyManipulator, ButtonName.Y.value)
-        .whileActiveOnce(
-          new StartEndCommand(m_tomwheel::raise, m_tomwheel::stopLift, m_tomwheel).withTimeout(1).andThen(
-          new StartEndCommand(m_tomwheel::raise, m_tomwheel::stopLift, m_tomwheel).withInterrupt(m_tomwheel::limitHit),
-          new StartEndCommand(m_tomwheel::raise, m_tomwheel::stopLift, m_tomwheel).withInterrupt(() -> !m_tomwheel.limitHit())
-        ));
+    // new JoystickButton(m_joyManipulator, ButtonName.Y.value)
+    //     .whileActiveOnce(
+    //       new StartEndCommand(m_tomwheel::raise, m_tomwheel::stopLift, m_tomwheel).withTimeout(1).andThen(
+    //       new StartEndCommand(m_tomwheel::raise, m_tomwheel::stopLift, m_tomwheel).withInterrupt(m_tomwheel::limitHit),
+    //       new StartEndCommand(m_tomwheel::raise, m_tomwheel::stopLift, m_tomwheel).withInterrupt(() -> !m_tomwheel.limitHit())
+    //     ));
 
-    new JoystickButton(m_joyManipulator, ButtonName.X.value).whenPressed(new RotateCount(m_tomwheel));
-    new JoystickButton(m_joyManipulator, ButtonName.B.value).whenPressed(new RotateColor(m_tomwheel));
+    // new JoystickButton(m_joyManipulator, ButtonName.X.value).whenPressed(new RotateCount(m_tomwheel));
+    // new JoystickButton(m_joyManipulator, ButtonName.B.value).whenPressed(new RotateColor(m_tomwheel));
   }
 
 

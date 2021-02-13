@@ -7,6 +7,7 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 
@@ -16,12 +17,13 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.lib1592.drivers.TalonFactory;
 import frc.robot.lib1592.drivers.TalonSRX;
-import frc.robot.lib1592.drivers.TalonSRX.Slot;
+// import frc.robot.lib1592.drivers.TalonSRX.Slot;
 
 public class Shooter extends SubsystemBase {
   private final TalonSRX m_gather = TalonFactory.create(Constants.ID_GATHER);
   private final TalonSRX m_kicker = TalonFactory.create(Constants.ID_KICKER);
-  private final TalonSRX m_shooter = TalonFactory.create(Constants.ID_SHOOTER);
+  // private final TalonSRX m_shooter = TalonFactory.create(Constants.ID_SHOOTER);
+  private final TalonFX m_shooter = new TalonFX(Constants.ID_SHOOTER);
   private final DigitalInput m_loaded = new DigitalInput(Constants.DIO_LOADED);
 
   public Shooter() {
@@ -32,7 +34,7 @@ public class Shooter extends SubsystemBase {
 
     m_shooter.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, Constants.TALON_TIMEOUT);
     m_shooter.configAllowableClosedloopError(0, Constants.ERROR_MAX_SHOOTER * Constants.ENC_SHOOTER_PPR, Constants.TALON_TIMEOUT);
-    m_shooter.setPID(Slot.SLOT0, Constants.PID_SHOOTER);
+    // m_shooter.setPID(Slot.SLOT0, Constants.PID_SHOOTER);
   }
 
   @Override
@@ -66,11 +68,13 @@ public class Shooter extends SubsystemBase {
   }
 
   public void startShooter() {
-    m_shooter.set(ControlMode.Velocity, Constants.SPEED_SHOOTER * Constants.ENC_SHOOTER_PPR * Constants.MIN_TO_100ms);
+    // m_shooter.set(ControlMode.Velocity, Constants.SPEED_SHOOTER * Constants.ENC_SHOOTER_PPR * Constants.MIN_TO_100ms);
+    m_shooter.set(ControlMode.PercentOutput, 1.0);
   }
 
   public void stopShooter() {
-    m_shooter.stopMotor();
+    // m_shooter.stopMotor();
+    m_shooter.set(ControlMode.PercentOutput, 0.0);
   }
 
   public boolean isLoaded() {
