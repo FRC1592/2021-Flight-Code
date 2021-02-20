@@ -22,7 +22,43 @@ Git Setup
  - https://docs.wpilib.org/en/stable/docs/software/vscode-overview/3rd-party-libraries.html#rd-party-libraries
 
 Step 3
- - 
+ - Imaging your RoboRIO (not done yet)
+ - Programming the radio...
+ - https://docs.wpilib.org/en/stable/docs/zero-to-robot/step-3/radio-programming.html
+ - Radio model OM... means "open mesh"
+ - Firmware apparently does not need updating
+ -Robots name was 1592_thebot
+ -see briefcase for password
+ 
 
 Step 4
  - 
+
+
+Step 5
+-get laptop with 2021 software these laptops are numer 2,6,3
+-turn laptop on open 2021 driver software 
+-turn on robot connect wirelessly from the laptop through wifi settings
+-wifi network for robot will be 1592_thebot
+-plug in joysticks
+-enable robot
+
+
+
+Issues
+1
+-problems with radio may need to switch
+-
+2
+-batterys would drain very fast
+
+3
+- balls shhot with alot of back spin
+-max distance 10 feet
+
+4
+-may need new motor
+-current motor is a 775 pro
+
+5-
+
