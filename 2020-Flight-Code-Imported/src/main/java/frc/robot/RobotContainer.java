@@ -32,20 +32,20 @@ import frc.robot.subsystems.TomWheel;
  * (including subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
+  // Controllers
+  public final static XBoxGamepad m_joyDriver = new XBoxGamepad(Constants.JOY_DRIVER);
+  public final static XBoxGamepad m_joyManipulator = new XBoxGamepad(Constants.JOY_MANIPULATOR);
+
   // Subsystems
   private final Chassis m_chassis = new Chassis();
-  private final Shooter m_shooter = new Shooter();
+  private final Shooter m_shooter = new Shooter(m_joyDriver);
   private final TomWheel m_tomwheel = new TomWheel();
 
   // Auto commands
   private final WaitCommand m_autoDoNothing = new WaitCommand(1.0);
 
   SendableChooser<Command> m_chooser = new SendableChooser<>();
-
-  // Controllers
-  public final static XBoxGamepad m_joyDriver = new XBoxGamepad(Constants.JOY_DRIVER);
-  public final static XBoxGamepad m_joyManipulator = new XBoxGamepad(Constants.JOY_MANIPULATOR);
-
+  
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
@@ -71,8 +71,8 @@ public class RobotContainer {
   // Button -> command mappingss
   private void configureButtonBindings() {
     // Driver
-    new JoystickButton(m_joyDriver, ButtonName.Y.value).whenPressed(new InstantCommand(m_shooter::startShooter, m_shooter));
-    new JoystickButton(m_joyDriver, ButtonName.A.value).whenPressed(new InstantCommand(m_shooter::stopShooter, m_shooter));
+    // new JoystickButton(m_joyDriver, ButtonName.Y.value).whenPressed(new InstantCommand(m_shooter::startShooter, m_shooter));
+    // new JoystickButton(m_joyDriver, ButtonName.A.value).whenPressed(new InstantCommand(m_shooter::stopShooter, m_shooter));
     new JoystickButton(m_joyDriver, ButtonName.RIGHT_TRIGGER.value)
         .whenPressed(new InstantCommand(m_shooter::startKicker, m_shooter))
         .whenReleased(new InstantCommand(m_shooter::stopKicker, m_shooter));
