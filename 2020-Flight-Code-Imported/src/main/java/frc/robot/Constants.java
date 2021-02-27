@@ -97,14 +97,14 @@ public final class Constants {
     * 2048 Units/Rev * 500 RPM / 600 100ms/min in either direction:
     * velocity setpoint is in units/100ms
     */
-    public final static double RPM_TO_UNITS_PER_100MS = 4.0 * 2048.0 / 600.0; // 1 RPM
+    public final static double RPM_TO_UNITS_PER_100MS = 2048.0 / 600.0; // 1 RPM
     
     // public static final PIDConstantsCTRE PID_SHOOTER = new PIDConstantsCTRE(0.0, 0.0, 0.0, 1.0);
     public static final int ERROR_MAX_SHOOTER = 10;     // RPM
 
     public static final double SPEED_GATHER = 0.5;      // % Output
     public static final double SPEED_KICKER = 1.0;      // % Output
-    public static final int SPEED_SHOOTER = 1600;       // RPM
+    public static final int SPEED_SHOOTER = 6400;       // RPM
 
     //================-===//
     //      TomWheel      //
