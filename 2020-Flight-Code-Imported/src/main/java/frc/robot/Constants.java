@@ -129,4 +129,9 @@ public final class Constants {
     public static final Color COLOR_GREEN = ColorMatch.makeColor(0.182, 0.578, 0.240);
     public static final Color COLOR_RED = ColorMatch.makeColor(0.630, 0.290, 0.084);
     public static final Color COLOR_YELLOW = ColorMatch.makeColor(0.246, 0.489, 0.262);
+
+    //================-===//
+    //      Autonomous     //
+    //=================-==//
+	public static final double AUTO_SPEED = 0.35;
 }

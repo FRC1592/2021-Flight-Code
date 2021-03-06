@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.StartEndCommand;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.commands.chassis.DriveFowardConstantSpeed;
 import frc.robot.commands.chassis.DriveWithJoysticks;
 // import frc.robot.commands.tomwheel.RotateColor;
 // import frc.robot.commands.tomwheel.RotateCount;
@@ -82,7 +83,9 @@ public class RobotContainer {
     new JoystickButton(m_joyDriver, ButtonName.LEFT_BUMPER.value)
         .whenPressed(new InstantCommand(m_shooter::reverseGather, m_shooter))
         .whenReleased(new InstantCommand(m_shooter::stopGather, m_shooter));
-
+    new JoystickButton(m_joyDriver, ButtonName.RIGHT_BUMPER.value)
+        .whileHeld(new DriveFowardConstantSpeed(m_chassis, Constants.AUTO_SPEED));
+        
     // Manipulator
     // new JoystickButton(m_joyManipulator, ButtonName.A.value)
     //     .whileActiveOnce(
