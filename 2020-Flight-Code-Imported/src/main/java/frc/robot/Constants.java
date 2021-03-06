@@ -10,7 +10,6 @@ package frc.robot;
 import com.revrobotics.ColorMatch;
 
 import edu.wpi.first.wpilibj.util.Color;
-import frc.robot.lib1592.control.PIDConstantsCTRE;
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
@@ -90,21 +89,20 @@ public final class Constants {
     // https://docs.ctre-phoenix.com/en/latest/ch16_ClosedLoop.html?highlight=feed%20foward#calculating-velocity-feed-forward-gain-kf
 
     public static final double SHOOTER_PERCENT_OUTPUT = 1.0;
-    public static final double SHOOTER_TARGET_RPM = 6000.0;
+    public static final double SHOOTER_TARGET_RPM = 6300.0;
 
     /**
-    * Convert 500 RPM to units / 100ms.
-    * 2048 Units/Rev * 500 RPM / 600 100ms/min in either direction:
+    * Convert RPM to units / 100ms.
+    * 2048 Units/Rev / 600 100ms/min in either direction:
     * velocity setpoint is in units/100ms
     */
     public final static double RPM_TO_UNITS_PER_100MS = 2048.0 * MIN_TO_100ms; // 1 RPM
     
-    // public static final PIDConstantsCTRE PID_SHOOTER = new PIDConstantsCTRE(0.0, 0.0, 0.0, 1.0);
     public static final int ERROR_MAX_SHOOTER = 10;     // RPM
 
     public static final double SPEED_GATHER = 0.5;      // % Output
     public static final double SPEED_KICKER = 1.0;      // % Output
-    // public static final int SPEED_SHOOTER = 1600;       // RPM
+    public static final double TARGET_VELOCITY_UNITS_PER_100_MS = Constants.SHOOTER_PERCENT_OUTPUT * Constants.SHOOTER_TARGET_RPM * Constants.RPM_TO_UNITS_PER_100MS; // 500 RPM
 
     //================-===//
     //      TomWheel      //

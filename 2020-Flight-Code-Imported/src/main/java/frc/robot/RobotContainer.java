@@ -16,8 +16,8 @@ import edu.wpi.first.wpilibj2.command.StartEndCommand;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.chassis.DriveWithJoysticks;
-import frc.robot.commands.tomwheel.RotateColor;
-import frc.robot.commands.tomwheel.RotateCount;
+// import frc.robot.commands.tomwheel.RotateColor;
+// import frc.robot.commands.tomwheel.RotateCount;
 import frc.robot.lib1592.hids.XBoxGamepad;
 import frc.robot.lib1592.hids.XBoxButton.ButtonName;
 import frc.robot.lib1592.utils.Discontinuities;
@@ -39,7 +39,7 @@ public class RobotContainer {
   // Subsystems
   private final Chassis m_chassis = new Chassis();
   private final Shooter m_shooter = new Shooter(m_joyDriver);
-  private final TomWheel m_tomwheel = new TomWheel();
+  //  final TomWheel m_tomwheel = new TomWheel();
 
   // Auto commands
   private final WaitCommand m_autoDoNothing = new WaitCommand(1.0);
@@ -71,8 +71,8 @@ public class RobotContainer {
   // Button -> command mappingss
   private void configureButtonBindings() {
     // Driver
-    // new JoystickButton(m_joyDriver, ButtonName.Y.value).whenPressed(new InstantCommand(m_shooter::startShooter, m_shooter));
-    // new JoystickButton(m_joyDriver, ButtonName.A.value).whenPressed(new InstantCommand(m_shooter::stopShooter, m_shooter));
+    new JoystickButton(m_joyDriver, ButtonName.Y.value).whenPressed(new InstantCommand(m_shooter::startShooter, m_shooter));
+    new JoystickButton(m_joyDriver, ButtonName.A.value).whenPressed(new InstantCommand(m_shooter::stopShooter, m_shooter));
     new JoystickButton(m_joyDriver, ButtonName.RIGHT_TRIGGER.value)
         .whenPressed(new InstantCommand(m_shooter::startKicker, m_shooter))
         .whenReleased(new InstantCommand(m_shooter::stopKicker, m_shooter));
