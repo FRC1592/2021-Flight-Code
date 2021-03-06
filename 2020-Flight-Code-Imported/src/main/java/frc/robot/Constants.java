@@ -10,7 +10,6 @@ package frc.robot;
 import com.revrobotics.ColorMatch;
 
 import edu.wpi.first.wpilibj.util.Color;
-import frc.robot.lib1592.control.PIDConstantsCTRE;
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
@@ -26,15 +25,15 @@ public final class Constants {
     //===================//
     public static final int TALON_TIMEOUT = 10;             // 10ms
     public static final double MIN_TO_100ms = 1.0 / 600.0;  // Converts units per min to units per 100ms for the talons
-
+    
     //=====================//
     //      Joysticks      //
     //=====================//
     public static final double JOY_EXPO = 0.1;
-
+    
     public static final int JOY_DRIVER = 0;
     public static final int JOY_MANIPULATOR = 1;
-
+    
     //===================//
     //      Chassis      //
     //===================//
@@ -42,9 +41,9 @@ public final class Constants {
     public static final int ID_DRIVE_LSLAVE = 2;        // DRV L SLV 2
     public static final int ID_DRIVE_RMASTER = 3;       // DRV R MSTR 3
     public static final int ID_DRIVE_RSLAVE = 4;        // DRV R SLV 4
-
+    
     public static final boolean INVERT_DRIVE = true;
-
+    
     //===================//
     //      Shooter      //
     //===================//
@@ -52,21 +51,58 @@ public final class Constants {
     public static final int ID_KICKER = 2;      // KICK 2
     public static final int ID_SHOOTER = 3;     // SHTR 3
     public static final int DIO_LOADED = 0;
-
+    
     public static final boolean INVERT_GATHER = true;
     public static final boolean INVERT_KICKER = true;
     public static final boolean INVERT_SHOOTER = false;
     public static final boolean INVERT_SHOOTER_SENSOR = false;
     public static final boolean INVERT_LOADED = false;
-
+    
     public static final int ENC_SHOOTER_PPR = 4096;     // Counts per rev
+    
+    /**
+     * Which PID slot to pull gains from. Starting 2018, you can choose from
+     * 0,1,2 or 3. Only the first two (0,1) are visible in web-based
+     * configuration.
+	 */
+    public static final int SLOT_IDX = 0;
+    
+	/**
+     * Talon FX supports multiple (cascaded) PID loops. For
+     * now we just want the primary one.
+	 */
+    public static final int PID_LOOP_IDX = 0;
+    
+	/**
+     * Set to zero to skip waiting for confirmation, set to nonzero to wait and
+     * report to DS if action fails.
+	 */
+    public static final int TALON_FX_TIMEOUT = 30;             // 30ms
 
-    public static final PIDConstantsCTRE PID_SHOOTER = new PIDConstantsCTRE(0.0, 0.0, 0.0, 1.0);
+    /**
+	 * PID Gains may have to be adjusted based on the responsiveness of control loop.
+     * kF: 1023 represents output value to Talon at 100%, 20660 represents Velocity units at 100% output
+     * 
+	 * 	                                    			  kP   	 kI    kD      kF          Iz    PeakOut */
+    public final static Gains GAIN_VELOCITY  = new Gains( 0.1, 0.001, 5, 1023.0/20660.0,  300,  1.00);
+    // https://docs.ctre-phoenix.com/en/latest/ch16_ClosedLoop.html#velocity-closed-loop-control-mode
+    // https://docs.ctre-phoenix.com/en/latest/ch16_ClosedLoop.html?highlight=feed%20foward#calculating-velocity-feed-forward-gain-kf
+
+    public static final double SHOOTER_PERCENT_OUTPUT = 1.0;
+    public static final double SHOOTER_TARGET_RPM = 6300.0;
+
+    /**
+    * Convert RPM to units / 100ms.
+    * 2048 Units/Rev / 600 100ms/min in either direction:
+    * velocity setpoint is in units/100ms
+    */
+    public final static double RPM_TO_UNITS_PER_100MS = 2048.0 * MIN_TO_100ms; // 1 RPM
+    
     public static final int ERROR_MAX_SHOOTER = 10;     // RPM
 
     public static final double SPEED_GATHER = 0.5;      // % Output
     public static final double SPEED_KICKER = 1.0;      // % Output
-    public static final int SPEED_SHOOTER = 1600;       // RPM
+    public static final double TARGET_VELOCITY_UNITS_PER_100_MS = Constants.SHOOTER_PERCENT_OUTPUT * Constants.SHOOTER_TARGET_RPM * Constants.RPM_TO_UNITS_PER_100MS; // 500 RPM
 
     //================-===//
     //      TomWheel      //

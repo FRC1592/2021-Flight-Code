@@ -16,8 +16,8 @@ import edu.wpi.first.wpilibj2.command.StartEndCommand;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.chassis.DriveWithJoysticks;
-import frc.robot.commands.tomwheel.RotateColor;
-import frc.robot.commands.tomwheel.RotateCount;
+// import frc.robot.commands.tomwheel.RotateColor;
+// import frc.robot.commands.tomwheel.RotateCount;
 import frc.robot.lib1592.hids.XBoxGamepad;
 import frc.robot.lib1592.hids.XBoxButton.ButtonName;
 import frc.robot.lib1592.utils.Discontinuities;
@@ -32,20 +32,20 @@ import frc.robot.subsystems.TomWheel;
  * (including subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
+  // Controllers
+  public final static XBoxGamepad m_joyDriver = new XBoxGamepad(Constants.JOY_DRIVER);
+  public final static XBoxGamepad m_joyManipulator = new XBoxGamepad(Constants.JOY_MANIPULATOR);
+
   // Subsystems
   private final Chassis m_chassis = new Chassis();
-  private final Shooter m_shooter = new Shooter();
-  private final TomWheel m_tomwheel = new TomWheel();
+  private final Shooter m_shooter = new Shooter(m_joyDriver);
+  //  final TomWheel m_tomwheel = new TomWheel();
 
   // Auto commands
   private final WaitCommand m_autoDoNothing = new WaitCommand(1.0);
 
   SendableChooser<Command> m_chooser = new SendableChooser<>();
-
-  // Controllers
-  public final static XBoxGamepad m_joyDriver = new XBoxGamepad(Constants.JOY_DRIVER);
-  public final static XBoxGamepad m_joyManipulator = new XBoxGamepad(Constants.JOY_MANIPULATOR);
-
+  
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
