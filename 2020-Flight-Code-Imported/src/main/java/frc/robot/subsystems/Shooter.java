@@ -91,7 +91,7 @@ _sb.append(Constants.TARGET_VELOCITY_UNITS_PER_100_MS);
     /* Print built string every 10 loops */
 		if (++_loops >= 10) {
       _loops = 0;
-      System.out.println(_sb.toString());
+      // System.out.println(_sb.toString());
     }
 
     /* Reset built string */
@@ -123,7 +123,8 @@ _sb.append(Constants.TARGET_VELOCITY_UNITS_PER_100_MS);
   }
   
   public void startShooter() {
-    m_shooter.set(TalonFXControlMode.Velocity, Constants.TARGET_VELOCITY_UNITS_PER_100_MS);
+    // m_shooter.set(TalonFXControlMode.Velocity, Constants.TARGET_VELOCITY_UNITS_PER_100_MS);
+    m_shooter.set(ControlMode.PercentOutput, Constants.SHOOTER_PERCENT_OUTPUT);
   }
 
   public void stopShooter() {

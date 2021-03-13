@@ -84,12 +84,12 @@ public final class Constants {
      * kF: 1023 represents output value to Talon at 100%, 20660 represents Velocity units at 100% output
      * 
 	 * 	                                    			  kP   	 kI    kD      kF          Iz    PeakOut */
-    public final static Gains GAIN_VELOCITY  = new Gains( 0.1, 0.001, 5, 1023.0/20660.0,  300,  1.00);
+    public final static Gains GAIN_VELOCITY  = new Gains( 0.05, 0.001, 5, 1023.0/20660.0,  300,  1.00);
     // https://docs.ctre-phoenix.com/en/latest/ch16_ClosedLoop.html#velocity-closed-loop-control-mode
     // https://docs.ctre-phoenix.com/en/latest/ch16_ClosedLoop.html?highlight=feed%20foward#calculating-velocity-feed-forward-gain-kf
 
-    public static final double SHOOTER_PERCENT_OUTPUT = 1.0;
-    public static final double SHOOTER_TARGET_RPM = 6300.0;
+    public static final double SHOOTER_PERCENT_OUTPUT = 0.5;
+    public static final double SHOOTER_TARGET_RPM = 2000.0;
 
     /**
     * Convert RPM to units / 100ms.
@@ -133,5 +133,7 @@ public final class Constants {
     //================-===//
     //      Autonomous     //
     //=================-==//
-	public static final double AUTO_SPEED = 0.35;
+    public static final double AUTO_SPEED_FORWARD = 0.45;
+    public static final double AUTO_SPEED_ROTATE = 0.35;
+    
 }

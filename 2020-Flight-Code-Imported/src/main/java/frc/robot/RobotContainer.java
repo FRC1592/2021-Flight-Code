@@ -10,18 +10,22 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.StartEndCommand;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.commands.chassis.AutoSlalom;
 import frc.robot.commands.chassis.DriveFowardConstantSpeed;
 import frc.robot.commands.chassis.DriveWithJoysticks;
+import frc.robot.commands.chassis.RotateConstantSpeed;
 // import frc.robot.commands.tomwheel.RotateColor;
 // import frc.robot.commands.tomwheel.RotateCount;
 import frc.robot.lib1592.hids.XBoxGamepad;
 import frc.robot.lib1592.hids.XBoxButton.ButtonName;
 import frc.robot.lib1592.utils.Discontinuities;
+import frc.robot.commands.chassis.DriveFowardConstantSpeed;
 import frc.robot.subsystems.Chassis;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.TomWheel;
@@ -45,6 +49,7 @@ public class RobotContainer {
   // Auto commands
   private final WaitCommand m_autoDoNothing = new WaitCommand(1.0);
 
+  // A chooser for autonomous commands
   SendableChooser<Command> m_chooser = new SendableChooser<>();
   
   /**
@@ -64,9 +69,11 @@ public class RobotContainer {
     // Add options to the auto chooser
     m_chooser.setDefaultOption("Do nothing", m_autoDoNothing);
     m_chooser.addOption("Drive over line", new StartEndCommand(() -> m_chassis.drive(1, 1), () -> m_chassis.drive(0, 0), m_chassis).withTimeout(0.75));
+    m_chooser.addOption("Slalom2", new AutoSlalom(m_chassis));
 
-    // Put the chooser on the dashboard
+    // Put the chooser on the dashboards
     Shuffleboard.getTab("Autonomous").add(m_chooser);
+    SmartDashboard.putData(m_chooser);
   }
 
   // Button -> command mappingss
@@ -84,7 +91,11 @@ public class RobotContainer {
         .whenPressed(new InstantCommand(m_shooter::reverseGather, m_shooter))
         .whenReleased(new InstantCommand(m_shooter::stopGather, m_shooter));
     new JoystickButton(m_joyDriver, ButtonName.RIGHT_BUMPER.value)
-        .whileHeld(new DriveFowardConstantSpeed(m_chassis, Constants.AUTO_SPEED));
+        .whileHeld(new DriveFowardConstantSpeed(m_chassis, Constants.AUTO_SPEED_FORWARD));
+    new JoystickButton(m_joyDriver, ButtonName.X.value)
+        .whileHeld(new RotateConstantSpeed(m_chassis, -Constants.AUTO_SPEED_ROTATE, Constants.AUTO_SPEED_ROTATE));
+    new JoystickButton(m_joyDriver, ButtonName.B.value)
+        .whileHeld(new RotateConstantSpeed(m_chassis, Constants.AUTO_SPEED_ROTATE, -Constants.AUTO_SPEED_ROTATE));
         
     // Manipulator
     // new JoystickButton(m_joyManipulator, ButtonName.A.value)
