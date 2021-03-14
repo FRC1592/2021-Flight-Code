@@ -6,29 +6,31 @@ package frc.robot.commands.chassis;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Chassis;
+import frc.robot.DeadReckoning;
 
 public class RotateConstantSpeed extends CommandBase {
   private final Chassis m_chassis;
   private final double m_leftSpeed;
   private final double m_rightSpeed;
 
-  private double startTime;
-  private double elapsedTime = 0.0;
+  private final DeadReckoning m_deadReckoning;
+  private final String m_direction;
 
   /** Creates a new DriveFowardForTime. */
-  public RotateConstantSpeed(Chassis chassis, double leftSpeed, double rightSpeed) {
+  public RotateConstantSpeed(Chassis chassis, double leftSpeed, double rightSpeed, String direction) {
     m_chassis = chassis;
     m_leftSpeed = -leftSpeed;
     m_rightSpeed = -rightSpeed;
+
+    m_deadReckoning = new DeadReckoning(System.currentTimeMillis());
+    m_direction = direction;
+
     addRequirements(chassis);
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {
-    // Set start time.
-    startTime = System.currentTimeMillis();
-  }
+  public void initialize() {}
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
@@ -39,15 +41,7 @@ public class RotateConstantSpeed extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    elapsedTime = System.currentTimeMillis() - startTime;
-
-    if (m_leftSpeed > 0.0) {
-      System.out.println("new RotateConstantSpeed(m_chassis, -Constants.AUTO_SPEED_ROTATE, Constants.AUTO_SPEED_ROTATE).withTimeout(" + elapsedTime + " / 1000.0),");
-      System.out.println("new WaitCommand(1.0),");
-    } else {
-      System.out.println("new RotateConstantSpeed(m_chassis, Constants.AUTO_SPEED_ROTATE, -Constants.AUTO_SPEED_ROTATE).withTimeout(" + elapsedTime + " / 1000.0),");
-      System.out.println("new WaitCommand(1.0),");
-    }
+    m_deadReckoning.printRotateCmd(m_direction);
   }
 
   // Returns true when the command should end.

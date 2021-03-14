@@ -5,28 +5,28 @@
 package frc.robot.commands.chassis;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.DeadReckoning;
 import frc.robot.subsystems.Chassis;
 
 public class DriveFowardConstantSpeed extends CommandBase {
   private final Chassis m_chassis;
   private final double m_speed;
 
-  private double startTime;
-  private double elapsedTime = 0.0;
+  private final DeadReckoning m_deadReckoning;
 
   /** Creates a new DriveFowardForTime. */
   public DriveFowardConstantSpeed(Chassis chassis, double speed) {
     m_chassis = chassis;
     m_speed = -speed;
+
+    m_deadReckoning = new DeadReckoning(System.currentTimeMillis());
+
     addRequirements(chassis);
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {
-    // Set start time.
-    startTime = System.currentTimeMillis();
-  }
+  public void initialize() {}
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
@@ -37,9 +37,7 @@ public class DriveFowardConstantSpeed extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    elapsedTime = System.currentTimeMillis() - startTime;
-    System.out.println("new DriveFowardConstantSpeed(m_chassis, Constants.AUTO_SPEED_FORWARD).withTimeout(" + elapsedTime + " / 1000.0),");
-    System.out.println("new WaitCommand(1.0),");
+    m_deadReckoning.printDriveForwardCmd();
   }
 
   // Returns true when the command should end.

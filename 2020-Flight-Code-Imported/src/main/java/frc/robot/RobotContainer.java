@@ -13,19 +13,18 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
-import edu.wpi.first.wpilibj2.command.StartEndCommand;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.chassis.AutoSlalom;
 import frc.robot.commands.chassis.DriveFowardConstantSpeed;
 import frc.robot.commands.chassis.DriveWithJoysticks;
-import frc.robot.commands.chassis.RotateConstantSpeed;
+import frc.robot.commands.chassis.RotateClockwise;
+import frc.robot.commands.chassis.RotateCounterClockwise;
 // import frc.robot.commands.tomwheel.RotateColor;
 // import frc.robot.commands.tomwheel.RotateCount;
 import frc.robot.lib1592.hids.XBoxGamepad;
 import frc.robot.lib1592.hids.XBoxButton.ButtonName;
 import frc.robot.lib1592.utils.Discontinuities;
-import frc.robot.commands.chassis.DriveFowardConstantSpeed;
 import frc.robot.subsystems.Chassis;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.TomWheel;
@@ -48,6 +47,7 @@ public class RobotContainer {
 
   // Auto commands
   private final WaitCommand m_autoDoNothing = new WaitCommand(1.0);
+  private final AutoSlalom m_autoSlalom = new AutoSlalom(m_chassis);
 
   // A chooser for autonomous commands
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -68,8 +68,7 @@ public class RobotContainer {
 
     // Add options to the auto chooser
     m_chooser.setDefaultOption("Do nothing", m_autoDoNothing);
-    m_chooser.addOption("Drive over line", new StartEndCommand(() -> m_chassis.drive(1, 1), () -> m_chassis.drive(0, 0), m_chassis).withTimeout(0.75));
-    m_chooser.addOption("Slalom2", new AutoSlalom(m_chassis));
+    m_chooser.addOption("Slalom", m_autoSlalom);
 
     // Put the chooser on the dashboards
     Shuffleboard.getTab("Autonomous").add(m_chooser);
@@ -93,9 +92,9 @@ public class RobotContainer {
     new JoystickButton(m_joyDriver, ButtonName.RIGHT_BUMPER.value)
         .whileHeld(new DriveFowardConstantSpeed(m_chassis, Constants.AUTO_SPEED_FORWARD));
     new JoystickButton(m_joyDriver, ButtonName.X.value)
-        .whileHeld(new RotateConstantSpeed(m_chassis, -Constants.AUTO_SPEED_ROTATE, Constants.AUTO_SPEED_ROTATE));
+        .whileHeld(new RotateCounterClockwise(m_chassis));
     new JoystickButton(m_joyDriver, ButtonName.B.value)
-        .whileHeld(new RotateConstantSpeed(m_chassis, Constants.AUTO_SPEED_ROTATE, -Constants.AUTO_SPEED_ROTATE));
+        .whileHeld(new RotateClockwise(m_chassis));
         
     // Manipulator
     // new JoystickButton(m_joyManipulator, ButtonName.A.value)

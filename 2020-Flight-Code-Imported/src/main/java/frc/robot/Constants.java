@@ -24,7 +24,8 @@ public final class Constants {
     //      Generic      //
     //===================//
     public static final int TALON_TIMEOUT = 10;             // 10ms
-    public static final double MIN_TO_100ms = 1.0 / 600.0;  // Converts units per min to units per 100ms for the talons
+    public static final double MIN_TO_100_MS = 1.0 / 600.0;  // Converts units per min to units per 100ms for the talons
+    public static final double MS_TO_SEC = 1.0 / 1000.0;
     
     //=====================//
     //      Joysticks      //
@@ -84,7 +85,7 @@ public final class Constants {
      * kF: 1023 represents output value to Talon at 100%, 20660 represents Velocity units at 100% output
      * 
 	 * 	                                    			  kP   	 kI    kD      kF          Iz    PeakOut */
-    public final static Gains GAIN_VELOCITY  = new Gains( 0.05, 0.001, 5, 1023.0/20660.0,  300,  1.00);
+    public final static Gains GAIN_VELOCITY  = new Gains( 0.1, 0.001, 5, 1023.0/20660.0,  300,  1.00);
     // https://docs.ctre-phoenix.com/en/latest/ch16_ClosedLoop.html#velocity-closed-loop-control-mode
     // https://docs.ctre-phoenix.com/en/latest/ch16_ClosedLoop.html?highlight=feed%20foward#calculating-velocity-feed-forward-gain-kf
 
@@ -96,7 +97,7 @@ public final class Constants {
     * 2048 Units/Rev / 600 100ms/min in either direction:
     * velocity setpoint is in units/100ms
     */
-    public final static double RPM_TO_UNITS_PER_100MS = 2048.0 * MIN_TO_100ms; // 1 RPM
+    public final static double RPM_TO_UNITS_PER_100MS = 2048.0 * MIN_TO_100_MS; // 1 RPM
     
     public static final int ERROR_MAX_SHOOTER = 10;     // RPM
 
