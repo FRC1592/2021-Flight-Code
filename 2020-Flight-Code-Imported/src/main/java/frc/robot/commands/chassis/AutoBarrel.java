@@ -7,22 +7,26 @@ package frc.robot.commands.chassis;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Constants;
 import frc.robot.commands.chassis.DriveForwardConstantSpeed;
+import frc.robot.commands.shooter.StartGather;
 import frc.robot.subsystems.Chassis;
+import frc.robot.subsystems.Shooter;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class AutoSlalom extends SequentialCommandGroup {
+public class AutoBarrel extends SequentialCommandGroup {
   private final Chassis m_chassis;
+  private final Shooter m_shooter;
 
-  /** Creates a new AutoSlalom. */
-  public AutoSlalom(Chassis chassis) {
+  /** Creates a new AutoBarrel. */
+  public AutoBarrel(Chassis chassis, Shooter shooter) {
     m_chassis = chassis;
+    m_shooter = shooter;
 
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-      
+       
     );
   }
 }
