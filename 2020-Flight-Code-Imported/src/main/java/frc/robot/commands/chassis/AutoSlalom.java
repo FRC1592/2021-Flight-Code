@@ -26,7 +26,36 @@ public class AutoSlalom extends SequentialCommandGroup {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-      
+      new DriveForwardConstantSpeed(m_chassis, 0.6).withTimeout(1056.0 * Constants.MS_TO_SEC),
+new DriveForwardConstantSpeed(m_chassis, 0.6).withTimeout(480.0 * Constants.MS_TO_SEC),
+new RotateClockwise(m_chassis).withTimeout(139.0 * Constants.MS_TO_SEC),
+new DriveForwardConstantSpeed(m_chassis, 0.6).withTimeout(400.0 * Constants.MS_TO_SEC),
+new RotateClockwise(m_chassis).withTimeout(380.0 * Constants.MS_TO_SEC),
+new RotateClockwise(m_chassis).withTimeout(280.0 * Constants.MS_TO_SEC),
+new DriveForwardConstantSpeed(m_chassis, 0.6).withTimeout(499.0 * Constants.MS_TO_SEC),
+new DriveForwardConstantSpeed(m_chassis, 0.6).withTimeout(459.0 * Constants.MS_TO_SEC),
+new RotateCounterClockwise(m_chassis).withTimeout(279.0 * Constants.MS_TO_SEC),
+new RotateClockwise(m_chassis).withTimeout(660.0 * Constants.MS_TO_SEC),
+new RotateClockwise(m_chassis).withTimeout(459.0 * Constants.MS_TO_SEC),
+new RotateClockwise(m_chassis).withTimeout(140.0 * Constants.MS_TO_SEC),
+new DriveForwardConstantSpeed(m_chassis, 0.6).withTimeout(879.0 * Constants.MS_TO_SEC),
+new RotateCounterClockwise(m_chassis).withTimeout(340.0 * Constants.MS_TO_SEC),
+new RotateClockwise(m_chassis).withTimeout(920.0 * Constants.MS_TO_SEC),
+new DriveForwardConstantSpeed(m_chassis, 0.6).withTimeout(200.0 * Constants.MS_TO_SEC),
+new DriveForwardConstantSpeed(m_chassis, 0.6).withTimeout(1000.0 * Constants.MS_TO_SEC),
+new DriveForwardConstantSpeed(m_chassis, 0.6).withTimeout(320.0 * Constants.MS_TO_SEC),
+new RotateClockwise(m_chassis).withTimeout(860.0 * Constants.MS_TO_SEC),
+new DriveForwardConstantSpeed(m_chassis, 0.6).withTimeout(800.0 * Constants.MS_TO_SEC),
+new RotateClockwise(m_chassis).withTimeout(1280.0 * Constants.MS_TO_SEC),
+new DriveForwardConstantSpeed(m_chassis, 0.6).withTimeout(540.0 * Constants.MS_TO_SEC),
+new RotateClockwise(m_chassis).withTimeout(240.0 * Constants.MS_TO_SEC),
+new RotateCounterClockwise(m_chassis).withTimeout(460.0 * Constants.MS_TO_SEC),
+new DriveForwardConstantSpeed(m_chassis, 0.6).withTimeout(1460.0 * Constants.MS_TO_SEC),
+new DriveForwardConstantSpeed(m_chassis, 0.6).withTimeout(300.0 * Constants.MS_TO_SEC),
+new RotateCounterClockwise(m_chassis).withTimeout(180.0 * Constants.MS_TO_SEC),
+new RotateClockwise(m_chassis).withTimeout(300.0 * Constants.MS_TO_SEC),
+new RotateClockwise(m_chassis).withTimeout(100.0 * Constants.MS_TO_SEC),
+new DriveForwardConstantSpeed(m_chassis, 0.6).withTimeout(240.0 * Constants.MS_TO_SEC) 
     );
   }
 }

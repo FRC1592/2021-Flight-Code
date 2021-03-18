@@ -134,8 +134,8 @@ public final class Constants {
     //================-===//
     //      Autonomous     //
     //=================-==//
+    public static final double AUTO_SPEED_FORWARD_BARREL = 0.6;
     public static final double AUTO_SPEED_FORWARD_SLALOM = 0.45;
-    public static final double AUTO_SPEED_FORWARD_OTHER = 0.60;
-    public static final double AUTO_SPEED_FORWARD = AUTO_SPEED_FORWARD_SLALOM;
-    public static final double AUTO_SPEED_ROTATE = 0.35;
+    public static final double AUTO_SPEED_FORWARD = AUTO_SPEED_FORWARD_BARREL;
+    public static final double AUTO_SPEED_ROTATE = 0.5;
 }

@@ -22,7 +22,7 @@ public class RotateConstantSpeed extends CommandBase {
     m_leftSpeed = -leftSpeed;
     m_rightSpeed = -rightSpeed;
 
-    m_deadReckoning = new DeadReckoning(System.currentTimeMillis());
+    m_deadReckoning = new DeadReckoning();
     m_direction = direction;
 
     addRequirements(chassis);
@@ -30,7 +30,9 @@ public class RotateConstantSpeed extends CommandBase {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    m_deadReckoning.startTimer();
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
@@ -41,6 +43,7 @@ public class RotateConstantSpeed extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    m_deadReckoning.stopTimer();
     m_deadReckoning.printRotateCmd(m_direction);
   }
 

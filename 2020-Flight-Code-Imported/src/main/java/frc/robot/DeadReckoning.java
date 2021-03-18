@@ -1,15 +1,12 @@
 package frc.robot;
 
 public class DeadReckoning {
-  private final double m_startTime;
-
-  public DeadReckoning(double startTime) {
-    m_startTime = startTime;
-  }
+  private double m_startTime;
+  private double m_stopTime;
+  private double m_elapsedTime;
 
   public void printCmd(String cmdName, String cmdParams) {
-    double elapsedTime = System.currentTimeMillis() - m_startTime;
-    System.out.println("new " + cmdName + "(" + cmdParams + ").withTimeout(" + elapsedTime + " * Constants.MS_TO_SEC),");
+    System.out.println("new " + cmdName + "(" + cmdParams + ").withTimeout(" + m_elapsedTime + " * Constants.MS_TO_SEC),");
   }
 
   public void printDriveForwardCmd() {
@@ -18,5 +15,14 @@ public class DeadReckoning {
 
   public void printRotateCmd(String direction) {
     printCmd("Rotate" + direction, "m_chassis");
+  }
+
+  public void startTimer() {
+    m_startTime = System.currentTimeMillis();
+  }
+
+  public void stopTimer() {
+    m_stopTime = System.currentTimeMillis();
+    m_elapsedTime = m_stopTime - m_startTime;
   }
 }
