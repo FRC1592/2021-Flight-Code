@@ -60,11 +60,13 @@ public class Shooter extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    SmartDashboard.putBoolean("Limit Switch", isLoaded());
+    SmartDashboard.putBoolean("Shooter Is Loaded", isLoaded());
 
     /* Get Talon/Victor's current RPM */
     _sb.append("\trpm:");
-    _sb.append(m_shooter.getSelectedSensorVelocity(Constants.PID_LOOP_IDX) / Constants.RPM_TO_UNITS_PER_100MS);
+    double rpm = m_shooter.getSelectedSensorVelocity(Constants.PID_LOOP_IDX) / Constants.RPM_TO_UNITS_PER_100MS;
+    double rpmRounded = Math.round(rpm);
+    _sb.append(rpm);
     _sb.append("rpm"); 	// RPM
 
     /* Get Talon/Victor's current output percentage */
@@ -81,11 +83,11 @@ public class Shooter extends SubsystemBase {
 		_sb.append(m_shooter.getSelectedSensorVelocity(Constants.PID_LOOP_IDX));
     _sb.append("u"); 	// Native units
      
-/* Append more signals to print when in speed mode. */
-_sb.append("\terr:");
-_sb.append(m_shooter.getClosedLoopError(Constants.PID_LOOP_IDX));
-_sb.append("\ttrg:");
-_sb.append(Constants.TARGET_VELOCITY_UNITS_PER_100_MS);
+    /* Append more signals to print when in speed mode. */
+    _sb.append("\terr:");
+    _sb.append(m_shooter.getClosedLoopError(Constants.PID_LOOP_IDX));
+    _sb.append("\ttrg:");
+    _sb.append(Constants.TARGET_VELOCITY_UNITS_PER_100_MS);
     
     /* Print built string every 10 loops */
 		if (++_loops >= 10) {
@@ -94,7 +96,10 @@ _sb.append(Constants.TARGET_VELOCITY_UNITS_PER_100_MS);
     }
 
     /* Reset built string */
-		_sb.setLength(0);
+    _sb.setLength(0);
+    
+    // SmartDashboard
+    SmartDashboard.putNumber("Shooter RPM", rpmRounded);
   }
   
   public void startGather() {

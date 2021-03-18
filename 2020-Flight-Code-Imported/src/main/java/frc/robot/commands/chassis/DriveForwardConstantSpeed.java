@@ -8,14 +8,14 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.DeadReckoning;
 import frc.robot.subsystems.Chassis;
 
-public class DriveFowardConstantSpeed extends CommandBase {
+public class DriveForwardConstantSpeed extends CommandBase {
   private final Chassis m_chassis;
   private final double m_speed;
 
   private final DeadReckoning m_deadReckoning;
 
   /** Creates a new DriveFowardForTime. */
-  public DriveFowardConstantSpeed(Chassis chassis, double speed) {
+  public DriveForwardConstantSpeed(Chassis chassis, double speed) {
     m_chassis = chassis;
     m_speed = -speed;
 
