@@ -21,7 +21,7 @@ public class DriveForwardConstantSpeed extends CommandBase {
 
     m_deadReckoning = new DeadReckoning();
 
-    addRequirements(chassis);
+    addRequirements(m_chassis);
   }
 
   // Called when the command is initially scheduled.
@@ -49,3 +49,7 @@ public class DriveForwardConstantSpeed extends CommandBase {
     return false;
   }
 }
+
+// Example: Tank drive stabilization using turn rate
+// https://docs.wpilib.org/en/stable/docs/software/sensors/gyros-software.html?highlight=gyro#example-tank-drive-stabilization-using-turn-rate
+// When closing the loop on the turn rate for heading stabilization, PI loops are particularly effective.
