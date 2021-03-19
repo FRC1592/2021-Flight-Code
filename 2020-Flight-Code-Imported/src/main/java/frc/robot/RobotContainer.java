@@ -15,7 +15,6 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.commands.chassis.AutoBarrel;
 import frc.robot.commands.chassis.AutoSlalom;
 import frc.robot.commands.chassis.DriveForwardConstantSpeed;
 import frc.robot.commands.chassis.DriveWithJoysticks;
@@ -49,8 +48,7 @@ public class RobotContainer {
 
   // Auto commands
   private final WaitCommand m_autoDoNothing = new WaitCommand(1.0);
-  private final AutoBarrel m_autoBarrel = new AutoBarrel(m_chassis, m_shooter);
-  private final AutoSlalom m_autoSlalom = new AutoSlalom(m_chassis);
+  private final AutoSlalom m_autoSlalom = new AutoSlalom(m_chassis, m_shooter);
 
   // A chooser for autonomous commands
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -71,7 +69,6 @@ public class RobotContainer {
 
     // Add options to the auto chooser
     m_chooser.setDefaultOption("Do nothing Auto", m_autoDoNothing);
-    m_chooser.addOption("Barrel Auto", m_autoBarrel);
     m_chooser.addOption("Slalom Auto", m_autoSlalom);
 
     // Put the chooser on the dashboards
