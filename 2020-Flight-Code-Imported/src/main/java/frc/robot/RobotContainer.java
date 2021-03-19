@@ -15,8 +15,10 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.commands.chassis.AutoBarrel;
-import frc.robot.commands.chassis.AutoSlalom;
+import frc.robot.commands.autonomous.AutoBarrel;
+import frc.robot.commands.autonomous.AutoBounce;
+import frc.robot.commands.autonomous.AutoPaths;
+import frc.robot.commands.autonomous.AutoSlalom;
 import frc.robot.commands.chassis.DriveForwardConstantSpeed;
 import frc.robot.commands.chassis.DriveWithJoysticks;
 import frc.robot.commands.chassis.RotateClockwise;
@@ -29,7 +31,7 @@ import frc.robot.lib1592.hids.XBoxButton.ButtonName;
 import frc.robot.lib1592.utils.Discontinuities;
 import frc.robot.subsystems.Chassis;
 import frc.robot.subsystems.Shooter;
-import frc.robot.subsystems.TomWheel;
+// import frc.robot.subsystems.TomWheel;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -49,7 +51,9 @@ public class RobotContainer {
 
   // Auto commands
   private final WaitCommand m_autoDoNothing = new WaitCommand(1.0);
-  private final AutoBarrel m_autoBarrel = new AutoBarrel(m_chassis, m_shooter);
+  private final AutoBarrel m_autoBarrel = new AutoBarrel(m_chassis);
+  private final AutoBounce m_autoBounce = new AutoBounce(m_chassis);
+  private final AutoPaths m_autoPaths = new AutoPaths(m_chassis, m_shooter);
   private final AutoSlalom m_autoSlalom = new AutoSlalom(m_chassis);
 
   // A chooser for autonomous commands
@@ -72,6 +76,8 @@ public class RobotContainer {
     // Add options to the auto chooser
     m_chooser.setDefaultOption("Do nothing Auto", m_autoDoNothing);
     m_chooser.addOption("Barrel Auto", m_autoBarrel);
+    m_chooser.addOption("Bounce Auto", m_autoBounce);
+    m_chooser.addOption("Paths Auto", m_autoPaths);
     m_chooser.addOption("Slalom Auto", m_autoSlalom);
 
     // Put the chooser on the dashboards
@@ -119,7 +125,6 @@ public class RobotContainer {
     // new JoystickButton(m_joyManipulator, ButtonName.B.value).whenPressed(new RotateColor(m_tomwheel));
   }
 
-
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
    *
@@ -127,5 +132,9 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     return m_chooser.getSelected();
+  }
+
+  public void stopGather() {
+    m_shooter.stopGather();
   }
 }
