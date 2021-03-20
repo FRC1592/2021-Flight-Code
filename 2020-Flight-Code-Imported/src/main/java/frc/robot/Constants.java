@@ -45,8 +45,7 @@ public final class Constants {
     
     public static final boolean INVERT_DRIVE = false;
     
-    public static final Gains GAIN_CHASSIS_DRIVE_FORWARD = new Gains(0.0, 0.0, 0.0, 0.0, 0, 0.0);
-    public static final Gains GAIN_CHASSIS_ROTATE_DEGREES = new Gains(0.0375, 0.0, 0.0, 0.0, 0, 0.0);
+    public static final Gains GAIN_CHASSIS_DRIVE_FORWARD = new Gains(1.0, 0.0, 0.0, 0.0, 0, 0.0);
     public static final Gains GAIN_CHASSIS_TURN_TO_ANGLE = new Gains(1.0, 0.0, 0.0, 0.0, 0, 0.0);
     
     //===================//

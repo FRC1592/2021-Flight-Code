@@ -34,13 +34,13 @@ public class DriveForwardConstantSpeed extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    // m_chassis.drive(m_speed, m_speed);
+    m_chassis.drive(m_speed, m_speed);
 
-    // Setpoint is implicitly 0, since we don't want the heading to change
-    double error = -m_chassis.getRate();
+    // // Setpoint is implicitly 0, since we don't want the heading to change
+    // double error = -m_chassis.getRate();
 
-    // Drives forward continuously at half speed, using the gyro to stabilize the heading
-    m_chassis.drive(m_speed + Constants.GAIN_CHASSIS_DRIVE_FORWARD.kP * error, m_speed - Constants.GAIN_CHASSIS_DRIVE_FORWARD.kP * error);
+    // // Drives forward continuously at half speed, using the gyro to stabilize the heading
+    // m_chassis.drive(m_speed + Constants.GAIN_CHASSIS_DRIVE_FORWARD.kP * error, m_speed - Constants.GAIN_CHASSIS_DRIVE_FORWARD.kP * error);
   }
 
   // Called once the command ends or is interrupted.
