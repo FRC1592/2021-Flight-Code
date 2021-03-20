@@ -7,6 +7,8 @@ package frc.robot.commands.autonomous;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Constants;
 import frc.robot.commands.chassis.DriveForwardConstantSpeed;
+import frc.robot.commands.chassis.RotateClockwise;
+import frc.robot.commands.chassis.RotateCounterClockwise;
 import frc.robot.commands.shooter.StartGather;
 import frc.robot.subsystems.Chassis;
 import frc.robot.subsystems.Shooter;
@@ -16,10 +18,12 @@ import frc.robot.subsystems.Shooter;
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class AutoPaths extends SequentialCommandGroup {
   private final Chassis m_chassis;
+  private final Shooter m_shooter;
 
   /** Creates a new AutoPaths. */
   public AutoPaths(Chassis chassis, Shooter shooter) {
     m_chassis = chassis;
+    m_shooter = shooter;
 
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
