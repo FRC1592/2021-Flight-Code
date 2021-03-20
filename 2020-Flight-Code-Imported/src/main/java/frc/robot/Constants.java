@@ -43,7 +43,11 @@ public final class Constants {
     public static final int ID_DRIVE_RMASTER = 3;       // DRV R MSTR 3
     public static final int ID_DRIVE_RSLAVE = 4;        // DRV R SLV 4
     
-    public static final boolean INVERT_DRIVE = true;
+    public static final boolean INVERT_DRIVE = false;
+    
+    public static final Gains GAIN_CHASSIS_DRIVE_FORWARD = new Gains(0.0, 0.0, 0.0, 0.0, 0, 0.0);
+    public static final Gains GAIN_CHASSIS_ROTATE_DEGREES = new Gains(0.0375, 0.0, 0.0, 0.0, 0, 0.0);
+    public static final Gains GAIN_CHASSIS_TURN_TO_ANGLE = new Gains(1.0, 0.0, 0.0, 0.0, 0, 0.0);
     
     //===================//
     //      Shooter      //
@@ -51,13 +55,13 @@ public final class Constants {
     public static final int ID_GATHER = 1;      // GTHR 1
     public static final int ID_KICKER = 2;      // KICK 2
     public static final int ID_SHOOTER = 3;     // SHTR 3
-    public static final int DIO_LOADED = 0;
+    public static final int DIO_LOADED = 8;
     
     public static final boolean INVERT_GATHER = true;
     public static final boolean INVERT_KICKER = true;
     public static final boolean INVERT_SHOOTER = false;
     public static final boolean INVERT_SHOOTER_SENSOR = false;
-    public static final boolean INVERT_LOADED = false;
+    public static final boolean INVERT_LOADED = true;
     
     public static final int ENC_SHOOTER_PPR = 4096;     // Counts per rev
     
@@ -85,7 +89,7 @@ public final class Constants {
      * kF: 1023 represents output value to Talon at 100%, 20660 represents Velocity units at 100% output
      * 
 	 * 	                                    			  kP   	 kI    kD      kF          Iz    PeakOut */
-    public final static Gains GAIN_VELOCITY  = new Gains( 0.1, 0.001, 5, 1023.0/20660.0,  300,  1.00);
+    public final static Gains GAIN_SHOOTER_VELOCITY  = new Gains( 0.1, 0.001, 5, 1023.0/20660.0,  300,  1.00);
     // https://docs.ctre-phoenix.com/en/latest/ch16_ClosedLoop.html#velocity-closed-loop-control-mode
     // https://docs.ctre-phoenix.com/en/latest/ch16_ClosedLoop.html?highlight=feed%20foward#calculating-velocity-feed-forward-gain-kf
 

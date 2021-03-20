@@ -51,10 +51,10 @@ public class Shooter extends SubsystemBase {
 		m_shooter.configPeakOutputReverse(-1, Constants.TALON_FX_TIMEOUT);
 
 		/* Config the Velocity closed loop gains in slot0 */
-		m_shooter.config_kF(Constants.PID_LOOP_IDX, Constants.GAIN_VELOCITY.kF, Constants.TALON_FX_TIMEOUT);
-		m_shooter.config_kP(Constants.PID_LOOP_IDX, Constants.GAIN_VELOCITY.kP, Constants.TALON_FX_TIMEOUT);
-		m_shooter.config_kI(Constants.PID_LOOP_IDX, Constants.GAIN_VELOCITY.kI, Constants.TALON_FX_TIMEOUT);
-    m_shooter.config_kD(Constants.PID_LOOP_IDX, Constants.GAIN_VELOCITY.kD, Constants.TALON_FX_TIMEOUT);
+		m_shooter.config_kF(Constants.PID_LOOP_IDX, Constants.GAIN_SHOOTER_VELOCITY.kF, Constants.TALON_FX_TIMEOUT);
+		m_shooter.config_kP(Constants.PID_LOOP_IDX, Constants.GAIN_SHOOTER_VELOCITY.kP, Constants.TALON_FX_TIMEOUT);
+		m_shooter.config_kI(Constants.PID_LOOP_IDX, Constants.GAIN_SHOOTER_VELOCITY.kI, Constants.TALON_FX_TIMEOUT);
+    m_shooter.config_kD(Constants.PID_LOOP_IDX, Constants.GAIN_SHOOTER_VELOCITY.kD, Constants.TALON_FX_TIMEOUT);
   }
   
   @Override

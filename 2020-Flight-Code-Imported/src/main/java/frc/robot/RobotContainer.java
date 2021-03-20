@@ -23,6 +23,7 @@ import frc.robot.commands.chassis.DriveForwardConstantSpeed;
 import frc.robot.commands.chassis.DriveWithJoysticks;
 import frc.robot.commands.chassis.RotateClockwise;
 import frc.robot.commands.chassis.RotateCounterClockwise;
+import frc.robot.commands.chassis.RotateDegrees;
 // import frc.robot.commands.tomwheel.RotateColor;
 // import frc.robot.commands.tomwheel.RotateCount;
 import frc.robot.lib1592.hids.XBoxGamepad;
@@ -104,6 +105,8 @@ public class RobotContainer {
         .whileHeld(new RotateCounterClockwise(m_chassis));
     new JoystickButton(m_joyDriver, ButtonName.B.value)
         .whileHeld(new RotateClockwise(m_chassis));
+    new JoystickButton(m_joyDriver, ButtonName.START.value)
+        .whileHeld(new InstantCommand(m_chassis::zeroYaw, m_chassis));
         
     // Manipulator
     // new JoystickButton(m_joyManipulator, ButtonName.A.value)

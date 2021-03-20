@@ -19,8 +19,8 @@ public class RotateConstantSpeed extends CommandBase {
   /** Creates a new DriveFowardForTime. */
   public RotateConstantSpeed(Chassis chassis, double leftSpeed, double rightSpeed, String direction) {
     m_chassis = chassis;
-    m_leftSpeed = -leftSpeed;
-    m_rightSpeed = -rightSpeed;
+    m_leftSpeed = leftSpeed;
+    m_rightSpeed = rightSpeed;
 
     m_deadReckoning = new DeadReckoning();
     m_direction = direction;

@@ -7,6 +7,7 @@ public class DeadReckoning {
 
   public void printCmd(String cmdName, String cmdParams) {
     System.out.println("new " + cmdName + "(" + cmdParams + ").withTimeout(" + m_elapsedTime + " * Constants.MS_TO_SEC),");
+    System.out.println("new WaitCommand(1.0),");
   }
 
   public void printDriveForwardCmd() {

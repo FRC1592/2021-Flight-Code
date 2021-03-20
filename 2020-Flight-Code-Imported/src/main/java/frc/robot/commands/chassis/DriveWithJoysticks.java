@@ -35,7 +35,7 @@ public class DriveWithJoysticks extends CommandBase {
    */
   @Override
   public void execute() {
-    m_chassis.drive(m_left.getAsDouble(), m_right.getAsDouble());
+    m_chassis.drive(-m_left.getAsDouble(), -m_right.getAsDouble());
   }
 
   // Called once the command ends or is interrupted.
