@@ -25,7 +25,7 @@ public class RotateConstantSpeed extends CommandBase {
     m_deadReckoning = new DeadReckoning();
     m_direction = direction;
 
-    addRequirements(chassis);
+    addRequirements(m_chassis);
   }
 
   // Called when the command is initially scheduled.
