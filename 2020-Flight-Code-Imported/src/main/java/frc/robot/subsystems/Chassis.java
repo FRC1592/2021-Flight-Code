@@ -16,7 +16,6 @@ import frc.robot.Constants;
 import com.kauailabs.navx.frc.AHRS;
 import com.revrobotics.CANEncoder;
 import com.revrobotics.CANSparkMax;
-import com.revrobotics.EncoderType;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 public class Chassis extends SubsystemBase {
@@ -47,7 +46,7 @@ public class Chassis extends SubsystemBase {
 
     ahrs = new AHRS(SPI.Port.kMXP);
 
-    m_encoder = m_leftMaster.getEncoder(EncoderType.kQuadrature, 4096);
+    m_encoder = m_leftMaster.getEncoder();
   }
 
   @Override
@@ -60,8 +59,7 @@ public class Chassis extends SubsystemBase {
     SmartDashboard.putNumber(   "IMU_TotalYaw",         ahrs.getAngle());
     SmartDashboard.putNumber(   "IMU_YawRateDPS",       ahrs.getRate());
 
-    // SmartDashboard.putNumber("ProcessVariable", m_encoder.getPosition());
-
+    SmartDashboard.putNumber("ProcessVariable", m_encoder.getPosition());
   }
 
   /**
@@ -77,6 +75,10 @@ public class Chassis extends SubsystemBase {
 
   public double getRate() {
     return ahrs.getRate();
+  }
+
+  public double getDistanceMeters() {
+    return m_encoder.getPosition() * Constants.CHASSIS_ENCODER_UNITS_TO_METERS;
   }
 
   public void zeroYaw() {

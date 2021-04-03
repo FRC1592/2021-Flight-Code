@@ -20,6 +20,7 @@ import frc.robot.commands.autonomous.AutoBounce;
 import frc.robot.commands.autonomous.AutoPaths;
 import frc.robot.commands.autonomous.AutoSlalom;
 import frc.robot.commands.chassis.DriveForwardConstantSpeed;
+import frc.robot.commands.chassis.DriveFowardDistance;
 import frc.robot.commands.chassis.DriveWithJoysticks;
 import frc.robot.commands.chassis.RotateClockwise;
 import frc.robot.commands.chassis.RotateCounterClockwise;
@@ -109,7 +110,9 @@ public class RobotContainer {
         .whenPressed(new InstantCommand(m_shooter::reverseGather, m_shooter))
         .whenReleased(new InstantCommand(m_shooter::stopGather, m_shooter));
     new JoystickButton(m_joyDriver, ButtonName.RIGHT_BUMPER.value)
-        .whileHeld(new DriveForwardConstantSpeed(m_chassis, Constants.AUTO_SPEED_FORWARD));
+        .whenPressed(new DriveFowardDistance(m_chassis, 100.0));
+    // new JoystickButton(m_joyDriver, ButtonName.RIGHT_BUMPER.value)
+    //     .whileHeld(new DriveForwardConstantSpeed(m_chassis, Constants.AUTO_SPEED_FORWARD));
     new JoystickButton(m_joyDriver, ButtonName.X.value)
         .whileHeld(new RotateCounterClockwise(m_chassis));
     new JoystickButton(m_joyDriver, ButtonName.B.value)

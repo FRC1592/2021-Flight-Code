@@ -47,6 +47,8 @@ public final class Constants {
     
     public static final Gains GAIN_CHASSIS_DRIVE_FORWARD = new Gains(1.0, 0.0, 0.0, 0.0, 0, 0.0);
     public static final Gains GAIN_CHASSIS_TURN_TO_ANGLE = new Gains(1.0, 0.0, 0.0, 0.0, 0, 0.0);
+
+    public static final double CHASSIS_ENCODER_UNITS_TO_METERS = 1.0;
     
     //===================//
     //      Shooter      //

@@ -10,6 +10,7 @@ import frc.robot.subsystems.Chassis;
 public class DriveFowardDistance extends CommandBase {
   private final Chassis m_chassis;
   private final double m_distanceMeters;
+  private double m_startDistanceMeters;
 
   /** Creates a new DriveFowardDistance. */
   public DriveFowardDistance(Chassis chassis, double distanceMeters) {
@@ -22,7 +23,9 @@ public class DriveFowardDistance extends CommandBase {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    m_startDistanceMeters = m_chassis.getDistanceMeters();
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
@@ -38,6 +41,7 @@ public class DriveFowardDistance extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+    if (m_chassis.getDistanceMeters() - m_startDistanceMeters > m_distanceMeters) return true;
     return false;
   }
 }
