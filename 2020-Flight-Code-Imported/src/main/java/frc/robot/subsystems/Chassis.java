@@ -14,7 +14,9 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 import com.kauailabs.navx.frc.AHRS;
+import com.revrobotics.CANEncoder;
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.EncoderType;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 public class Chassis extends SubsystemBase {
@@ -26,6 +28,14 @@ public class Chassis extends SubsystemBase {
 
   private final DifferentialDrive m_drive = new DifferentialDrive(m_leftMaster, m_rightMaster);
 
+  /**
+   * A CANEncoder object is constructed using the GetEncoder() method on an 
+   * existing CANSparkMax object. The assumed encoder type is the hall effect,
+   * or a sensor type and counts per revolution can be passed in to specify
+   * a different kind of sensor. Here, it's a quadrature encoder with 4096 CPR.
+   */
+  private CANEncoder m_encoder;
+
   private final AHRS ahrs;
 
   public Chassis() {
@@ -36,6 +46,8 @@ public class Chassis extends SubsystemBase {
     m_rightSlave.follow(m_rightMaster);
 
     ahrs = new AHRS(SPI.Port.kMXP);
+
+    m_encoder = m_leftMaster.getEncoder(EncoderType.kQuadrature, 4096);
   }
 
   @Override
@@ -47,6 +59,9 @@ public class Chassis extends SubsystemBase {
     
     SmartDashboard.putNumber(   "IMU_TotalYaw",         ahrs.getAngle());
     SmartDashboard.putNumber(   "IMU_YawRateDPS",       ahrs.getRate());
+
+    // SmartDashboard.putNumber("ProcessVariable", m_encoder.getPosition());
+
   }
 
   /**

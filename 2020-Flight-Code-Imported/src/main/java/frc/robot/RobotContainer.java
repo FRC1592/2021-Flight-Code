@@ -81,12 +81,12 @@ public class RobotContainer {
     m_chooser_autonomous.addOption("Slalom Auto", m_autoSlalom);
 
     // Add options to the auto chooser
-    m_chooser_shooter.setDefaultOption("(50%)", 0.5);
-    m_chooser_shooter.addOption("Green (10%)", 0.1);
-    m_chooser_shooter.addOption("Yellow (20%)", 0.2);
-    m_chooser_shooter.addOption("Blue (30%)", 0.3);
-    m_chooser_shooter.addOption("Red (40%)", 0.4);
-    m_chooser_shooter.addOption("Reintroduction (50%)", 0.5);
+    m_chooser_shooter.setDefaultOption("Default", Constants.SHOOTER_PERCENT_OUTPUT);
+    m_chooser_shooter.addOption("Green", Constants.SHOOTER_PERCENT_OUTPUT_GREEN);
+    m_chooser_shooter.addOption("Yellow", Constants.SHOOTER_PERCENT_OUTPUT_YELLOW);
+    m_chooser_shooter.addOption("Blue", Constants.SHOOTER_PERCENT_OUTPUT_BLUE);
+    m_chooser_shooter.addOption("Red", Constants.SHOOTER_PERCENT_OUTPUT_RED);
+    m_chooser_shooter.addOption("Reintroduction", Constants.SHOOTER_PERCENT_OUTPUT_REINTRODUCTION);
 
     // Put the chooser on the dashboards
     Shuffleboard.getTab("Autonomous").add(m_chooser_autonomous);
