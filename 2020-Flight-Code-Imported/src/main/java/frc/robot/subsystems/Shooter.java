@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.RobotContainer;
 import frc.robot.lib1592.drivers.TalonFactory;
 import frc.robot.lib1592.drivers.TalonSRX;
 import frc.robot.lib1592.hids.XBoxGamepad;
@@ -23,6 +24,7 @@ public class Shooter extends SubsystemBase {
   private final TalonSRX m_kicker = TalonFactory.create(Constants.ID_KICKER);
   private final TalonFX m_shooter = new TalonFX(Constants.ID_SHOOTER);
   private final DigitalInput m_loaded = new DigitalInput(Constants.DIO_LOADED);
+  private final RobotContainer m_robotContainer;
 
   /* String for output */
   StringBuilder _sb = new StringBuilder();
@@ -30,7 +32,7 @@ public class Shooter extends SubsystemBase {
   /* Loop tracker for prints */
   int _loops = 0;
 
-  public Shooter(XBoxGamepad joyDriver) {
+  public Shooter(XBoxGamepad joyDriver, RobotContainer container) {
     m_gather.setInverted(Constants.INVERT_GATHER);
     m_kicker.setInverted(Constants.INVERT_KICKER);
     m_shooter.setInverted(Constants.INVERT_SHOOTER);
@@ -55,6 +57,8 @@ public class Shooter extends SubsystemBase {
 		m_shooter.config_kP(Constants.PID_LOOP_IDX, Constants.GAIN_SHOOTER_VELOCITY.kP, Constants.TALON_FX_TIMEOUT);
 		m_shooter.config_kI(Constants.PID_LOOP_IDX, Constants.GAIN_SHOOTER_VELOCITY.kI, Constants.TALON_FX_TIMEOUT);
     m_shooter.config_kD(Constants.PID_LOOP_IDX, Constants.GAIN_SHOOTER_VELOCITY.kD, Constants.TALON_FX_TIMEOUT);
+
+    m_robotContainer = container; 
   }
   
   @Override
@@ -128,7 +132,7 @@ public class Shooter extends SubsystemBase {
   
   public void startShooter() {
     // m_shooter.set(TalonFXControlMode.Velocity, Constants.TARGET_VELOCITY_UNITS_PER_100_MS);
-    m_shooter.set(ControlMode.PercentOutput, Constants.SHOOTER_PERCENT_OUTPUT);
+    m_shooter.set(ControlMode.PercentOutput, m_robotContainer.getShooterOutput());
   }
 
   public void stopShooter() {

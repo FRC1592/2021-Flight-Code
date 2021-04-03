@@ -93,6 +93,12 @@ public final class Constants {
     // https://docs.ctre-phoenix.com/en/latest/ch16_ClosedLoop.html?highlight=feed%20foward#calculating-velocity-feed-forward-gain-kf
 
     public static final double SHOOTER_PERCENT_OUTPUT = 0.5;
+    public static final double SHOOTER_PERCENT_OUTPUT_GREEN = 0.1;
+    public static final double SHOOTER_PERCENT_OUTPUT_YELLOW = 0.2;
+    public static final double SHOOTER_PERCENT_OUTPUT_BLUE = 0.3;
+    public static final double SHOOTER_PERCENT_OUTPUT_RED = 0.4;
+    public static final double SHOOTER_PERCENT_OUTPUT_REINTRODUCTION = 0.5;
+
     public static final double SHOOTER_TARGET_RPM = 2000.0;
 
     /**

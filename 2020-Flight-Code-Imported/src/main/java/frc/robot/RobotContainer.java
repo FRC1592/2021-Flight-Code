@@ -45,7 +45,7 @@ public class RobotContainer {
 
   // Subsystems
   private final Chassis m_chassis = new Chassis();
-  private final Shooter m_shooter = new Shooter(m_joyDriver);
+  private final Shooter m_shooter = new Shooter(m_joyDriver, this);
   //  final TomWheel m_tomwheel = new TomWheel();
 
   // Auto commands
@@ -56,7 +56,8 @@ public class RobotContainer {
   private final AutoSlalom m_autoSlalom = new AutoSlalom(m_chassis);
 
   // A chooser for autonomous commands
-  SendableChooser<Command> m_chooser = new SendableChooser<>();
+  SendableChooser<Command> m_chooser_autonomous = new SendableChooser<>();
+  SendableChooser<Double> m_chooser_shooter = new SendableChooser<>();
   
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
@@ -73,15 +74,24 @@ public class RobotContainer {
         () -> Discontinuities.joyExpo(m_joyDriver.getY(Hand.kRight), Constants.JOY_EXPO)));
 
     // Add options to the auto chooser
-    m_chooser.setDefaultOption("Do nothing Auto", m_autoDoNothing);
-    m_chooser.addOption("Barrel Auto", m_autoBarrel);
-    m_chooser.addOption("Bounce Auto", m_autoBounce);
-    m_chooser.addOption("Paths Auto", m_autoPaths);
-    m_chooser.addOption("Slalom Auto", m_autoSlalom);
+    m_chooser_autonomous.setDefaultOption("Do nothing Auto", m_autoDoNothing);
+    m_chooser_autonomous.addOption("Barrel Auto", m_autoBarrel);
+    m_chooser_autonomous.addOption("Bounce Auto", m_autoBounce);
+    m_chooser_autonomous.addOption("Paths Auto", m_autoPaths);
+    m_chooser_autonomous.addOption("Slalom Auto", m_autoSlalom);
+
+    // Add options to the auto chooser
+    m_chooser_shooter.setDefaultOption("(50%)", 0.5);
+    m_chooser_shooter.addOption("Green (10%)", 0.1);
+    m_chooser_shooter.addOption("Yellow (20%)", 0.2);
+    m_chooser_shooter.addOption("Blue (30%)", 0.3);
+    m_chooser_shooter.addOption("Red (40%)", 0.4);
+    m_chooser_shooter.addOption("Reintroduction (50%)", 0.5);
 
     // Put the chooser on the dashboards
-    Shuffleboard.getTab("Autonomous").add(m_chooser);
-    SmartDashboard.putData(m_chooser);
+    Shuffleboard.getTab("Autonomous").add(m_chooser_autonomous);
+    SmartDashboard.putData(m_chooser_autonomous);
+    SmartDashboard.putData(m_chooser_shooter);
   }
 
   // Button -> command mappingss
@@ -130,7 +140,11 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    return m_chooser.getSelected();
+    return m_chooser_autonomous.getSelected();
+  }
+
+  public Double getShooterOutput() {
+    return m_chooser_shooter.getSelected();
   }
 
   public void stopGather() {
