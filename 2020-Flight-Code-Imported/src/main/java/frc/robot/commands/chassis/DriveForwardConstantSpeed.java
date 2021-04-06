@@ -47,7 +47,7 @@ public class DriveForwardConstantSpeed extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     m_deadReckoning.stopTimer();
-    m_deadReckoning.printDriveForwardCmd();
+    m_deadReckoning.printDriveForwardConstantSpeedCmd();
   }
 
   // Returns true when the command should end.

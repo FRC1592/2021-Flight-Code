@@ -5,15 +5,16 @@
 package frc.robot.commands.chassis;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 import frc.robot.subsystems.Chassis;
 
-public class DriveFowardDistance extends CommandBase {
+public class DriveForwardDistance extends CommandBase {
   private final Chassis m_chassis;
   private final double m_distanceMeters;
   private double m_startDistanceMeters;
 
-  /** Creates a new DriveFowardDistance. */
-  public DriveFowardDistance(Chassis chassis, double distanceMeters) {
+  /** Creates a new DriveForwardDistance. */
+  public DriveForwardDistance(Chassis chassis, double distanceMeters) {
     m_chassis = chassis;
     m_distanceMeters = distanceMeters;
 
@@ -30,7 +31,7 @@ public class DriveFowardDistance extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_chassis.drive(0.5, 0.5);
+    m_chassis.drive(Constants.AUTO_SPEED_FORWARD, Constants.AUTO_SPEED_FORWARD);
   }
 
   // Called once the command ends or is interrupted.
@@ -41,7 +42,6 @@ public class DriveFowardDistance extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if (m_chassis.getDistanceMeters() - m_startDistanceMeters > m_distanceMeters) return true;
-    return false;
+    return m_chassis.getDistanceMeters() - m_startDistanceMeters > m_distanceMeters;
   }
 }

@@ -44,7 +44,7 @@ public class RotateConstantSpeed extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     m_deadReckoning.stopTimer();
-    m_deadReckoning.printRotateCmd(m_direction);
+    m_deadReckoning.printRotateConstantSpeedCmd(m_direction);
   }
 
   // Returns true when the command should end.
