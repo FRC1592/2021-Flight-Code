@@ -21,9 +21,12 @@ import frc.robot.commands.autonomous.AutoPaths;
 import frc.robot.commands.autonomous.AutoSlalom;
 import frc.robot.commands.chassis.DriveForwardConstantSpeed;
 import frc.robot.commands.chassis.DriveForwardDistance;
+import frc.robot.commands.chassis.DriveForwardDistanceStabilized;
 import frc.robot.commands.chassis.DriveWithJoysticks;
 import frc.robot.commands.chassis.RotateClockwise;
 import frc.robot.commands.chassis.RotateCounterClockwise;
+import frc.robot.commands.chassis.TurnLeft;
+import frc.robot.commands.chassis.TurnRight;
 // import frc.robot.commands.tomwheel.RotateColor;
 // import frc.robot.commands.tomwheel.RotateCount;
 import frc.robot.lib1592.hids.XBoxGamepad;
@@ -110,13 +113,17 @@ public class RobotContainer {
         .whenPressed(new InstantCommand(m_shooter::reverseGather, m_shooter))
         .whenReleased(new InstantCommand(m_shooter::stopGather, m_shooter));
     new JoystickButton(m_joyDriver, ButtonName.RIGHT_BUMPER.value)
-        .whenPressed(new DriveForwardDistance(m_chassis, 100.0));
+        .whenPressed(new DriveForwardDistanceStabilized(m_chassis, 100.0));
     // new JoystickButton(m_joyDriver, ButtonName.RIGHT_BUMPER.value)
     //     .whileHeld(new DriveForwardConstantSpeed(m_chassis, Constants.AUTO_SPEED_FORWARD));
     new JoystickButton(m_joyDriver, ButtonName.X.value)
-        .whileHeld(new RotateCounterClockwise(m_chassis));
+        .whenPressed(new TurnLeft(m_chassis));
     new JoystickButton(m_joyDriver, ButtonName.B.value)
-        .whileHeld(new RotateClockwise(m_chassis));
+        .whenPressed(new TurnRight(m_chassis));
+    // new JoystickButton(m_joyDriver, ButtonName.X.value)
+    //     .whileHeld(new RotateCounterClockwise(m_chassis));
+    // new JoystickButton(m_joyDriver, ButtonName.B.value)
+    //     .whileHeld(new RotateClockwise(m_chassis));
     new JoystickButton(m_joyDriver, ButtonName.START.value)
         .whileHeld(new InstantCommand(m_chassis::zeroYaw, m_chassis));
         

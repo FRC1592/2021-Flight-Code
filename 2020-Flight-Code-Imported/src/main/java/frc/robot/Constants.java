@@ -23,9 +23,9 @@ public final class Constants {
     //===================//
     //      Generic      //
     //===================//
-    public static final int TALON_TIMEOUT = 10;             // 10ms
-    public static final double MIN_TO_100_MS = 1.0 / 600.0;  // Converts units per min to units per 100ms for the talons
     public static final double MS_TO_SEC = 1.0 / 1000.0;
+    public static final double MIN_TO_100_MS = 1.0 / 600.0;  // Converts units per min to units per 100ms for the talons
+    public static final int TALON_TIMEOUT = 10;             // 10ms
     
     //=====================//
     //      Joysticks      //
@@ -44,11 +44,22 @@ public final class Constants {
     public static final int ID_DRIVE_RSLAVE = 4;        // DRV R SLV 4
     
     public static final boolean INVERT_DRIVE = false;
-    
-    public static final Gains GAIN_CHASSIS_DRIVE_FORWARD = new Gains(1.0, 0.0, 0.0, 0.0, 0, 0.0);
-    public static final Gains GAIN_CHASSIS_TURN_TO_ANGLE = new Gains(1.0, 0.0, 0.0, 0.0, 0, 0.0);
 
-    public static final double CHASSIS_ENCODER_UNITS_TO_METERS = 1.0;
+    public static final double DRIVE_ENCODER_UNITS_TO_METERS = 1.0;
+
+    // Drive Foward heading stabilization gains
+    public static final double DRIVE_STABILIZE_P = 1.0;
+    public static final double DRIVE_STABILIZE_I = 0.5;
+    public static final double DRIVE_STABILIZE_D = 0.0;
+
+    // Turn to angle gains
+    public static final double DRIVE_TURN_P = 1.0;
+    public static final double DRIVE_TURN_I = 0.0;
+    public static final double DRIVE_TURN_D = 0.0;
+    
+    // Turn to angle tolerances
+    public static final double DRIVE_TURN_TOLERANCE_DEG = 5.0;
+    public static final double DRIVE_TURN_RATE_TOLERANCE_DEG_PER_S = 10.0;
     
     //===================//
     //      Shooter      //

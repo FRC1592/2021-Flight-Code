@@ -59,7 +59,7 @@ public class Chassis extends SubsystemBase {
     SmartDashboard.putNumber(   "IMU_TotalYaw",         ahrs.getAngle());
     SmartDashboard.putNumber(   "IMU_YawRateDPS",       ahrs.getRate());
 
-    SmartDashboard.putNumber("ProcessVariable", m_encoder.getPosition());
+    SmartDashboard.putNumber("Left drive motor encoder", m_encoder.getPosition());
   }
 
   /**
@@ -78,7 +78,7 @@ public class Chassis extends SubsystemBase {
   }
 
   public double getDistanceMeters() {
-    return m_encoder.getPosition() * Constants.CHASSIS_ENCODER_UNITS_TO_METERS;
+    return m_encoder.getPosition() * Constants.DRIVE_ENCODER_UNITS_TO_METERS;
   }
 
   public void zeroYaw() {

@@ -6,6 +6,7 @@ package frc.robot.commands.chassis;
 
 import edu.wpi.first.wpilibj.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.PIDCommand;
+import frc.robot.Constants;
 import frc.robot.DeadReckoning;
 import frc.robot.subsystems.Chassis;
 
@@ -13,14 +14,6 @@ import frc.robot.subsystems.Chassis;
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class TurnToAngle extends PIDCommand {
-    
-    private static final double kTurnP = 1.0;
-    private static final double kTurnI = 0.0;
-    private static final double kTurnD = 0.0;
-    
-    private static final double kTurnToleranceDeg = 5.0;
-    private static final double kTurnRateToleranceDegPerS = 10.0;
-    
     private final double m_angleDegrees;
     private final DeadReckoning m_deadReckoning;
 
@@ -28,7 +21,7 @@ public class TurnToAngle extends PIDCommand {
     public TurnToAngle(Chassis chassis, double angleDegrees) {
         super(
             // The controller that the command will use
-            new PIDController(kTurnP, kTurnI, kTurnD),
+            new PIDController(Constants.DRIVE_TURN_P, Constants.DRIVE_TURN_I, Constants.DRIVE_TURN_D),
             // This should return the measurement
             // Close loop on heading
             () -> chassis.getAngle(),
@@ -53,7 +46,7 @@ public class TurnToAngle extends PIDCommand {
         // Set the controller tolerance - the delta tolerance ensures the robot is stationary at the
         // setpoint before it is considered as having reached the reference
         getController()
-            .setTolerance(kTurnToleranceDeg, kTurnRateToleranceDegPerS);
+            .setTolerance(Constants.DRIVE_TURN_TOLERANCE_DEG, Constants.DRIVE_TURN_RATE_TOLERANCE_DEG_PER_S);
 
         m_angleDegrees = angleDegrees;
         m_deadReckoning = new DeadReckoning();
