@@ -46,9 +46,12 @@ public class RobotContainer {
   // Controllers
   public final static XBoxGamepad m_joyDriver = new XBoxGamepad(Constants.JOY_DRIVER);
   public final static XBoxGamepad m_joyManipulator = new XBoxGamepad(Constants.JOY_MANIPULATOR);
+  
+  // LIDAR
+  private final LIDAR lidar = new LIDAR();
 
   // Subsystems
-  private final Chassis m_chassis = new Chassis();
+  private final Chassis m_chassis = new Chassis(lidar);
   private final Shooter m_shooter = new Shooter(m_joyDriver, this);
   //  final TomWheel m_tomwheel = new TomWheel();
 
@@ -112,18 +115,18 @@ public class RobotContainer {
     new JoystickButton(m_joyDriver, ButtonName.LEFT_BUMPER.value)
         .whenPressed(new InstantCommand(m_shooter::reverseGather, m_shooter))
         .whenReleased(new InstantCommand(m_shooter::stopGather, m_shooter));
-    new JoystickButton(m_joyDriver, ButtonName.RIGHT_BUMPER.value)
-        .whenPressed(new DriveForwardDistanceStabilized(m_chassis, 100.0));
     // new JoystickButton(m_joyDriver, ButtonName.RIGHT_BUMPER.value)
-    //     .whileHeld(new DriveForwardConstantSpeed(m_chassis, Constants.AUTO_SPEED_FORWARD));
-    new JoystickButton(m_joyDriver, ButtonName.X.value)
-        .whenPressed(new TurnLeft(m_chassis));
-    new JoystickButton(m_joyDriver, ButtonName.B.value)
-        .whenPressed(new TurnRight(m_chassis));
+    //     .whenPressed(new DriveForwardDistanceStabilized(m_chassis, 100.0));
+    new JoystickButton(m_joyDriver, ButtonName.RIGHT_BUMPER.value)
+        .whileHeld(new DriveForwardConstantSpeed(m_chassis, Constants.AUTO_SPEED_FORWARD));
     // new JoystickButton(m_joyDriver, ButtonName.X.value)
-    //     .whileHeld(new RotateCounterClockwise(m_chassis));
+    //     .whenPressed(new TurnLeft(m_chassis));
     // new JoystickButton(m_joyDriver, ButtonName.B.value)
-    //     .whileHeld(new RotateClockwise(m_chassis));
+    //     .whenPressed(new TurnRight(m_chassis));
+    new JoystickButton(m_joyDriver, ButtonName.X.value)
+        .whileHeld(new RotateCounterClockwise(m_chassis));
+    new JoystickButton(m_joyDriver, ButtonName.B.value)
+        .whileHeld(new RotateClockwise(m_chassis));
     new JoystickButton(m_joyDriver, ButtonName.START.value)
         .whileHeld(new InstantCommand(m_chassis::zeroYaw, m_chassis));
         

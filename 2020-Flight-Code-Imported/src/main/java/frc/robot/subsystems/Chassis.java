@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.LIDAR;
 
 import com.kauailabs.navx.frc.AHRS;
 import com.revrobotics.CANEncoder;
@@ -37,7 +38,9 @@ public class Chassis extends SubsystemBase {
 
   private final AHRS ahrs;
 
-  public Chassis() {
+  private final LIDAR m_lidar;
+
+  public Chassis(LIDAR lidar) {
     m_leftMaster.setInverted(Constants.INVERT_DRIVE);
     m_rightMaster.setInverted(Constants.INVERT_DRIVE);
 
@@ -47,6 +50,8 @@ public class Chassis extends SubsystemBase {
     ahrs = new AHRS(SPI.Port.kMXP);
 
     m_encoder = m_leftMaster.getEncoder();
+
+    m_lidar = lidar;
   }
 
   @Override
@@ -60,6 +65,25 @@ public class Chassis extends SubsystemBase {
     SmartDashboard.putNumber(   "IMU_YawRateDPS",       ahrs.getRate());
 
     SmartDashboard.putNumber("Left drive motor encoder", m_encoder.getPosition());
+
+    double distanceMeters = m_lidar.getDistanceMeters();
+
+    SmartDashboard.putNumber("LIDAR", distanceMeters);
+
+    double pathABlueDistanceMeters = 4.572;
+    double pathARedDistanceMeters;
+    double pathBBlueDistanceMeters = 5.334;
+    double pathBRedDistanceMeters = 1.524;
+
+    if (distanceMeters < pathBRedDistanceMeters * 1.1) {
+      SmartDashboard.putString("Path", "B Red");
+    } else if (distanceMeters < pathABlueDistanceMeters * 1.1) {
+      SmartDashboard.putString("Path", "A Blue");
+    } else if (distanceMeters < pathBBlueDistanceMeters * 1.1) {
+      SmartDashboard.putString("Path", "B Blue");
+    } else {
+      SmartDashboard.putString("Path", "A Red");
+    }
   }
 
   /**
